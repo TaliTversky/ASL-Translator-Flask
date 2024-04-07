@@ -1,0 +1,30 @@
+{% extends "base.html" %} 
+{% block title %}Home{% endblock %} 
+{% block content %}
+<div align="center">
+  <h1>SignAl</h1>
+  <p>Welcome! <br>
+    SignAl designed to make sign language accessible to everyone. <br> 
+    With just one click you can start translating sign language into text in real time. <br>
+    It's user-friendly, perfect for practice, and supports your journey in learning sign language efficiently.<br>
+    Join us in bridging communication gaps through technology.</p>
+  <div style="margin-top: 50px;"> <!-- Add margin-top for spacing -->
+    <div style="margin-bottom: 10px;">
+      <form action="{{ url_for('learn.live_translate') }}" method="GET">
+        <button type="submit" class="btn btn-primary">Learn sign language</button>
+      </form>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <form action="{{ url_for('translate.live_translate') }}" method="GET">
+        <button type="submit" class="btn btn-primary">Translate video</button>
+      </form>
+    </div>
+    <div style="margin-bottom: 10px;">
+      <form action="{{ url_for('views.feedback') }}" method="GET">
+        <button type="submit" class="btn btn-primary">Feedback</button>
+      </form>
+    </div>
+</div>
+{% endblock %}
+
+

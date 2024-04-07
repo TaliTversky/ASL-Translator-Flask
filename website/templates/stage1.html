@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Translator{% endblock %}
+{% block content %}
+<h1 align="center">Learn</h1>
+<body>
+    <h2 align="center">Welcome to Sign Language Practice!</h2>
+    <!-- Instructional paragraph -->
+    <div style="text-align: center;">
+        <p>
+          Press "Start" to begin your lesson.<br>
+          Try to sign the right letter from the word on the screen<br>
+          when you show the right letter it will turn green<br>
+          Please show your right hand for better results.<br>
+          Press "New Word" to generate a new word<br>
+          Press "Finish" to end the video stream.
+        </p>
+        <!-- Inserting the image here -->
+        <img src="{{ url_for('static', filename='images/ASLposter.JPG') }}" alt="ASL Poster" style="max-width: 30%; height: auto;">
+        <br>
+        
+        <!-- Buttons to start and finish the video feed -->
+        <button id="startBtn">Start</button>
+        <br><br>
+        <!-- Button for fetching a new word, handled by JavaScript -->
+        <button id="new-word">New Word</button>
+        <button id="finishBtn" style="display:none;">Finish</button>
+        <br><br>
+        <!-- Video display area -->
+        <img src="" id="video-feed" style="display:none; width: 35%; height: auto;">
+    </div>
+    <script>
+        document.getElementById('new-word').addEventListener('click', function() {
+            fetch('{{ url_for("learn.new_word") }}')
+                .then(response => response.json())
+                .then(data => {
+                    alert('New word: ' + data.new_word);
+                    // Update the UI or variables with the new word as needed
+                })
+                .catch(error => console.error('Error:', error));
+        });
+
+        // Handling the video feed start and stop
+        document.getElementById('startBtn').onclick = function() {
+            var videoFeed = document.getElementById('video-feed');
+            videoFeed.src = "{{ url_for('learn.learn_video_feed') }}"; // Set the video feed source
+            videoFeed.style.display = 'block'; // Show the video feed
+            this.style.display = 'none'; // Hide the start button
+            document.getElementById('finishBtn').style.display = 'inline'; // Show the finish button
+        };
+
+        document.getElementById('finishBtn').onclick = function() {
+            var videoFeed = document.getElementById('video-feed');
+            videoFeed.src = ""; // Remove the video feed source
+            videoFeed.style.display = 'none'; // Hide the video feed
+            this.style.display = 'none'; // Hide the finish button
+            document.getElementById('startBtn').style.display = 'inline'; // Show the start button again
+        };
+    </script>
+</body>
+{% endblock %}

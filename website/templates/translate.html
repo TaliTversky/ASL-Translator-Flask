@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Translator{% endblock %}
+
+{% block content %}
+<h1 align="center">Translate in real time</h1>
+
+<!-- Instructional paragraph -->
+<p align="center">
+    Press "Start" to begin the video stream.<br>
+    Please only show your right hand for better results.<br>
+    Press "Finish" to end the video stream.
+</p>
+
+<!-- Video display area -->
+<img id="videoFeed" src="" alt="Video feed" style="display:none;">
+
+<!-- Start button -->
+<button id="startBtn">Start</button>
+
+<!-- Finish button -->
+<button id="finishBtn" style="display:none;">Finish</button>
+
+<script>
+    // JavaScript to handle start and finish buttons
+    document.getElementById('startBtn').onclick = function() {
+        var videoFeed = document.getElementById('videoFeed');
+        videoFeed.src = "{{ url_for('translate.video_feed') }}"; // Set the video feed source
+        videoFeed.style.display = 'block'; // Show the video feed
+        this.style.display = 'none'; // Hide the start button
+        document.getElementById('finishBtn').style.display = 'inline'; // Show the finish button
+    };
+
+    document.getElementById('finishBtn').onclick = function() {
+        var videoFeed = document.getElementById('videoFeed');
+        videoFeed.src = ""; // Remove the video feed source
+        videoFeed.style.display = 'none'; // Hide the video feed
+        this.style.display = 'none'; // Hide the finish button
+        document.getElementById('startBtn').style.display = 'inline'; // Show the start button again
+    };
+</script>
+{% endblock %}

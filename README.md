@@ -4,6 +4,9 @@
 
 This web-based application is designed to translate American Sign Language (ASL) letters to English using live video feed. It features a learning module that enhances its translation accuracy over time, user authentication to ensure secure access, and a feedback mechanism that allows users to contribute to the application's improvement.
 
+**This is a project for an Information Systems course at the Technion.**
+
+
 ## Getting Started
 
 ### Prerequisites
@@ -39,9 +42,6 @@ This web-based application is designed to translate American Sign Language (ASL)
 
 ### Notice:
 Ensure your camera is connected and properly configured before starting the application.
-
-**This is a project for an Information Systems course at the Technion.**
-
 
 Thank you for exploring our ASL to English Translation Application!
 

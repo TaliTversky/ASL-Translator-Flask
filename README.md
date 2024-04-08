@@ -37,7 +37,7 @@ This web-based application is designed to translate American Sign Language (ASL)
     With the environment set up and activated, you can now run the application:
     python main.py
 
-
+### Notice:
 Ensure your camera is connected and properly configured before starting the application.
 
 **This is a project for an Information Systems course at the Technion.**
